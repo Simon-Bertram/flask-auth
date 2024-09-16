@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mx-auto">
+  <h1 class="text-2xl mb-8">Welcome</h1>
+  <form
+    id="auth-form"
+    action="{{url_for('login')}}"
+    method="post"
+    class="max-w-md"
+  >
+    <div class="mb-4">
+      <input
+        class="input-field"
+        type="text"
+        name="username"
+        placeholder="Username"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        class="input-field"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+
+    <button
+      class="btn btn-login"
+      onclick="setActionForm('login')"
+      type="submit"
+      value="login"
+    >
+      Login
+    </button>
+    <button
+      class="btn btn-register"
+      type="submit"
+      onclick="setActionForm('register')"
+    >
+      Register
+    </button>
+  </form>
+</div>
+
+<script>
+  function setActionForm(action) {
+    // Check if the form is the login form
+    let form = document.getElementById("auth-form");
+    if (action === "login") {
+      form.action = "{{url_for('login')}}";
+      form.method = "post";
+      form.submit();
+    } else if (action === "register") {
+      form.action = "{{url_for('register')}}";
+      form.method = "post";
+      form.submit();
+    }
+  }
+</script>
+
+{% endblock %}
